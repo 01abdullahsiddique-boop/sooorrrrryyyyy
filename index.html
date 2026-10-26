@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Moonlight Club 💗</title>
+<style>
+*{box-sizing:border-box}
+:root{--pink:#ff8bc9;--purple:#c7b9ff;--white:#fff7ff}
+body{margin:0;background:#0b0b24;color:var(--white);font-family:"Trebuchet MS",Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 15% 20%,#514078,transparent 40%),radial-gradient(ellipse at 85% 75%,#412b66,transparent 40%),linear-gradient(145deg,#11132e,#171337,#080c20)}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.2;transform:scale(.5)}}
+.moon{position:fixed;right:8%;top:7%;font-size:45px;opacity:.8;animation:float 5s infinite ease-in-out}
+main{width:min(900px,calc(100% - 28px));margin:auto}
+.scene{display:none;min-height:100svh;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px 0 60px;animation:appear .7s ease both}
+.scene.active{display:flex}
+@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 15px #ff76c9)}50%{filter:drop-shadow(0 0 40px #ff8bc9)}}
+.kicker{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:#d8ceff;font-weight:bold}
+h1{font-size:clamp(3rem,10vw,6.5rem);line-height:1;margin:24px 0;background:linear-gradient(100deg,#fff,#ffc5e8,#c8c5ff);color:transparent;background-clip:text;letter-spacing:-3px}
+h2{font-size:clamp(2rem,6vw,3.8rem);line-height:1.08;letter-spacing:-1.5px;margin:15px 0 20px}
+p{max-width:590px;color:#e3def8;line-height:1.85;font-size:1rem;margin:0 auto 22px}
+.btn{border:0;border-radius:30px;padding:14px 23px;background:linear-gradient(110deg,#ffd0e9,#d2c5ff,#b7eaff);color:#251b45;font-weight:bold;font-size:.95rem;cursor:pointer;transition:.25s;min-height:48px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #c5aaff50}
+.ghost{background:#ffffff12;border:1px solid #ffffff42;color:white}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.glass{width:min(100%,650px);padding:clamp(20px,5vw,38px);border:1px solid #ffffff28;border-radius:28px;background:linear-gradient(145deg,#ffffff15,#ffffff06);box-shadow:0 20px 70px #02041455;backdrop-filter:blur(15px)}
+.orbit{width:230px;height:205px;display:grid;place-items:center;position:relative;margin:10px auto}
+.planet{font-size:6rem;width:140px;height:140px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fff,#f0d5ff 20%,#a897f2 65%,#544b99);box-shadow:0 0 50px #c6a9ff65;animation:float 4s infinite ease-in-out}
+.ring{position:absolute;width:220px;height:70px;border:1px solid #efdbff;border-radius:50%;transform:rotate(-20deg);animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(340deg)}}
+.characters{display:flex;justify-content:center;gap:25px;margin:15px 0 25px}
+.char{font-size:clamp(3.5rem,12vw,6rem);display:inline-block;animation:float 3s infinite ease-in-out}
+.char:nth-child(2){animation-delay:-1s}.char:nth-child(3){animation-delay:-2s}
+.bubble{display:inline-block;padding:13px 20px;border-radius:18px;background:linear-gradient(120deg,#fff2fc,#e6e4ff);color:#40345d;font-weight:bold;max-width:95%}
+
+/* BIG ANIMATED SORRY HEART */
+.heart-scene{width:min(100%,500px);padding:10px 0}
+.big-heart-wrap{width:min(76vw,350px);aspect-ratio:1;position:relative;margin:25px auto 28px;display:grid;place-items:center;animation:float 3s ease-in-out infinite}
+.big-heart{position:relative;width:68%;height:68%;background:linear-gradient(145deg,#ffd0e9 0%,#ff75bd 43%,#db287e 100%);transform:rotate(-45deg);border-radius:18px;box-shadow:inset 10px 8px 18px #ffffff70,inset -15px -15px 24px #8a164e55,0 0 50px #ff6db7a8;animation:heartbeat 1.7s infinite ease-in-out}
+.big-heart:before,.big-heart:after{content:"";position:absolute;width:100%;height:100%;border-radius:50%;background:inherit}
+.big-heart:before{top:-50%;left:0}
+.big-heart:after{top:0;left:50%}
+.heart-word{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-35%,-55%) rotate(45deg);color:white;font-weight:1000;font-size:clamp(2.3rem,8vw,3.6rem);text-shadow:0 3px 15px #9d165b;letter-spacing:1px}
+@keyframes heartbeat{0%,100%{scale:1}15%{scale:1.07}30%{scale:1}45%{scale:1.04}}
+.spark{position:absolute;color:#fff2b8;font-size:30px;animation:twinkle 1s infinite alternate}
+.spark.a{right:6%;top:12%}.spark.b{left:4%;top:43%;animation-delay:-.5s}.spark.c{right:6%;bottom:16%;animation-delay:-.8s}
+.heart-caption{color:#ffd6ed;font-size:1rem;font-weight:bold;letter-spacing:1px}
+.game{position:relative;width:100%;max-width:550px;height:290px;border:1px solid #ffffff30;border-radius:25px;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,#65529d,#242047 65%,#151735);touch-action:manipulation}
+.game:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:32px 32px;opacity:.2}
+.heart-target{position:absolute;z-index:2;background:none;border:0;font-size:2rem;cursor:pointer;animation:pulse .8s infinite alternate}
+.status{color:#ffd0e9;font-weight:bold;margin:13px}
+.progress{height:7px;width:min(100%,350px);background:#ffffff20;border-radius:9px;margin:15px auto;overflow:hidden}
+.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#ffb6df,#c5b8ff,#a9e7ff);transition:.2s}
+.gifts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(100%,550px);margin:20px auto}
+.gift{min-height:135px;border:1px solid #ffffff30;border-radius:22px;background:#ffffff12;color:white;font-size:2.8rem;cursor:pointer;padding:12px;overflow-wrap:anywhere}
+.gift.opened{font-size:.9rem;background:linear-gradient(145deg,#ffe5f4,#dcd8ff);color:#403254}
+.password{display:block;width:min(100%,350px);margin:18px auto 8px;padding:16px;border-radius:15px;border:1px solid #ffffff45;background:#0c0d27;color:white;text-align:center;font-size:1rem;outline:none}
+.password:focus{border-color:#edc7ff;box-shadow:0 0 0 4px #d3aaff20}
+.error{min-height:25px;color:#ffc9e7;font-weight:bold}
+.secret-heart{font-size:4.5rem;animation:heartbeat 1.5s infinite}
+#secretText{white-space:pre-line;line-height:1.9}
+.fall{position:fixed;z-index:10;top:-35px;pointer-events:none;animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:0}}
+.footer{text-align:center;color:#aaa6ce;font-size:.75rem;padding:0 12px 25px}
+@media(max-width:520px){.scene{padding:28px 0 45px}.glass{border-radius:23px}.game{height:260px}.gifts{gap:7px}.gift{min-height:110px;font-size:2.3rem;padding:8px}.moon{font-size:32px}.orbit{transform:scale(.9);margin:0 auto}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="moon">🌙</div>
+<main>
+
+<section class="scene active" id="s1">
+ <div class="kicker">✦ a little universe made for you ✦</div>
+ <div class="orbit"><div class="ring"></div><div class="planet">🌎</div></div>
+ <h1>Hey, Sunshine.</h1>
+ <p>For someone who deserves a little magic today. Leave the world outside for a minute. There are stars to see, silly creatures to meet and tiny surprises waiting for you. ✨</p>
+ <div class="bubble">Your mission: do absolutely nothing serious. 🫧</div>
+ <div class="actions"><button class="btn" onclick="go(2)">Enter the Moonlight Club ✨</button></div>
+</section>
+
+<section class="scene" id="s2">
+ <div class="kicker">✦ first, a tiny surprise ✦</div>
+ <div class="heart-scene">
+  <div class="big-heart-wrap">
+   <div class="big-heart"><span class="heart-word">sorry</span></div>
+   <span class="spark a">✦</span><span class="spark b">✧</span><span class="spark c">✦</span>
+  </div>
+  <div class="heart-caption">A little heart, just for you. 💗</div>
+ </div>
+ <h2>Sending you a little love.</h2>
+ <p>No big speech right now. Just a big pink heart, a little sparkle, and a wish that your smile comes back soon. 💕</p>
+ <div class="actions"><button class="btn" onclick="go(3)">Okay, show me the magic →</button></div>
+</section>
+
+<section class="scene" id="s3">
+ <div class="kicker">✦ urgent cosmic bulletin ✦</div>
+ <h2>Welcome to the<br><span style="color:#ffd0e9">Silly Department.</span></h2>
+ <div class="glass">
+  <div class="characters"><span class="char">🐱</span><span class="char">🧸</span><span class="char">🐸</span></div>
+  <div class="bubble" id="jokeTitle">Doctor Cat has entered the chat. 👀</div>
+  <p id="jokeBody" style="margin-top:25px">The doctor has no degree, one brain cell and an unreasonable amount of confidence.</p>
+  <div class="actions"><button class="btn" onclick="nextJoke()">Tell me another 😂</button><button class="btn ghost" onclick="go(4)">Next adventure →</button></div>
+ </div>
+</section>
+
+<section class="scene" id="s4">
+ <div class="kicker">✦ mini game no. 01 ✦</div>
+ <h2>Catch the happy hearts.</h2>
+ <p>Tap seven floating hearts in this tiny galaxy. Teddy is cheering for you. Very loudly. 🧸</p>
+ <div class="game" id="game"></div>
+ <div class="status" id="score">Hearts collected: 0 / 7</div>
+ <div class="progress"><span id="bar"></span></div>
+ <div class="actions"><button class="btn ghost" onclick="startGame()">Restart ↻</button><button class="btn" onclick="go(5)">Continue →</button></div>
+</section>
+
+<section class="scene" id="s5">
+ <div class="kicker">✦ three mystery gifts ✦</div>
+ <h2>Choose your little surprise.</h2>
+ <p>Open all three boxes. The Council of Cute Things has prepared official messages. 🎁</p>
+ <div class="gifts">
+  <button class="gift" onclick="openGift(this,0)">🎁</button>
+  <button class="gift" onclick="openGift(this,1)">🎀</button>
+  <button class="gift" onclick="openGift(this,2)">🪄</button>
+ </div>
+ <div class="status" id="giftScore">Gifts discovered: 0 / 3</div>
+ <div class="actions"><button class="btn" onclick="go(6)">Next little surprise →</button></div>
+</section>
+
+<section class="scene" id="s6">
+ <div class="kicker">✦ a tiny reminder from the moon ✦</div>
+ <h2>You can take it slow.</h2>
+ <div class="glass">
+  <div class="characters"><span class="char">🐰</span><span class="char">💗</span><span class="char">🐻</span></div>
+  <p id="reminder">You don't need to have everything figured out today. One small breath at a time is enough.</p>
+  <div class="bubble">Today's royal checklist: water, comfort, a snack and a little kindness to yourself. 👑</div>
+  <div class="actions"><button class="btn ghost" onclick="anotherReminder()">One more reminder 🌷</button><button class="btn" onclick="go(7)">Psst… a secret →</button></div>
+ </div>
+</section>
+
+<section class="scene" id="s7">
+ <div class="kicker">✦ classified: only for you ✦</div>
+ <div class="orbit"><div class="ring"></div><div class="planet">🔐</div></div>
+ <h2>There's one last little thing.</h2>
+ <p>The silly committee has finished its work. There's a special message waiting behind this little lock. It stays hidden until you know the password. 🤫</p>
+ <div class="bubble">No peeking, detective. 👀</div>
+ <div class="actions"><button class="btn" onclick="go(8)">Open the secret lock 💌</button></div>
+</section>
+
+<section class="scene" id="s8">
+ <div class="kicker">✦ secret access required ✦</div>
+ <div class="glass">
+  <div class="secret-heart">💗🔒</div>
+  <h2>Only you know the key.</h2>
+  <p>Enter the secret password to unlock the final surprise. ✨</p>
+  <form onsubmit="unlock(event)">
+   <input class="password" type="password" id="pass" placeholder="Secret password…" autocomplete="off" required>
+   <div class="error" id="error"></div>
+   <button class="btn" type="submit">Unlock my message ✨</button>
+  </form>
+ </div>
+</section>
+
+<section class="scene" id="s9">
+ <div class="kicker">✦ the little secret ✦</div>
+ <div class="glass">
+  <div class="secret-heart">💖</div>
+  <h2>Okay, sunshine. One thing.</h2>
+  <p id="secretText"></p>
+  <div class="characters"><span class="char">🐱</span><span class="char">🧸</span><span class="char">🐰</span></div>
+  <div class="bubble">A pocket-sized hug, delivered with extra stardust. 🫂</div>
+  <div class="actions"><button class="btn ghost" onclick="readAgain()">Read it again 💌</button><button class="btn" onclick="go(10)">One final wish 🌙</button></div>
+ </div>
+</section>
+
+<section class="scene" id="s10">
+ <div class="kicker">✦ from this universe to you ✦</div>
+ <div class="orbit"><div class="ring"></div><div class="planet">🐻‍❄️</div></div>
+ <h2>Keep a little sparkle.</h2>
+ <p>May a good song find you at the right time, may your favourite snack taste extra good, and may something unexpectedly lovely make you smile today. You deserve soft moments, too. ✨</p>
+ <div class="bubble">The end of this tiny adventure. The stars are still here. 💗</div>
+ <div class="actions"><button class="btn" onclick="go(3)">Replay the silliness ↻</button><button class="btn ghost" onclick="confetti(35)">More stardust ✦</button></div>
+</section>
+</main>
+<div class="footer">✦ handcrafted from moonlight, silliness & stardust ✦</div>
+
+<script>
+const SECRET_PASSWORD="iloveyou";
+const SECRET_MESSAGE="Hey you. 💗 If you're reading this, the secret mission worked: you made it all the way here. I hope this tiny universe gave your mind a little break and left even the smallest smile behind. You don't have to be cheerful every moment, and you don't have to pretend every day is easy. I just hope you remember how genuinely special you are — in your loud moments, your quiet moments, your silly moods and your cloudy days. The world is a little more lovely with you in it. Take a deep breath, get cozy, and imagine the warmest hug being sent your way. No big speech, no pressure. Just a little reminder that you matter. Always keep a tiny corner of your day for something that makes you happy. 🫂🌙✨";
+
+for(let i=0;i<110;i++){
+ const s=document.createElement("i");s.className="star";
+ s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";
+ const size=Math.random()*3+1;s.style.width=size+"px";s.style.height=size+"px";
+ s.style.animationDuration=(1.5+Math.random()*4)+"s";s.style.animationDelay=(-Math.random()*4)+"s";
+ document.getElementById("stars").appendChild(s);
+}
+function go(n){
+ document.querySelectorAll(".scene").forEach(s=>s.classList.remove("active"));
+ document.getElementById("s"+n).classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(n===4&&score<7)startGame();
+ if(n===9){confetti(45);typeSecret()}
+}
+let jokeIndex=0;
+const jokes=[
+ ["Doctor Cat has entered the chat. 👀","The doctor has no degree, one brain cell and an unreasonable amount of confidence."],
+ ["Breaking news from Teddy HQ 📢","Teddy walked into a room and forgot why. He lives there. The room is his."],
+ ["Frog's motivational speech 🐸","Ribbit. Translation: you're doing better than you think. Source: a very reliable frog."],
+ ["The royal snack inspector 🍓","This is a reminder to eat something delicious. The inspector will be checking."],
+ ["Weather report from the moon 🌙","A 99% chance of cozy blankets with scattered giggles later."]
+];
+function nextJoke(){
+ jokeIndex=(jokeIndex+1)%jokes.length;
+ document.getElementById("jokeTitle").textContent=jokes[jokeIndex][0];
+ document.getElementById("jokeBody").textContent=jokes[jokeIndex][1];confetti(12);
+}
+let score=0,gameTimer=null;
+function startGame(){
+ clearInterval(gameTimer);score=0;document.getElementById("game").innerHTML="";
+ updateScore();gameTimer=setInterval(spawnHeart,650);
+}
+function spawnHeart(){
+ if(!document.getElementById("s4").classList.contains("active")||score>=7){clearInterval(gameTimer);return}
+ const area=document.getElementById("game");
+ if(area.querySelectorAll(".heart-target").length>=5)return;
+ const b=document.createElement("button");b.className="heart-target";
+ b.textContent=["💖","💗","💕","💘","💝"][Math.floor(Math.random()*5)];
+ b.style.left=(Math.random()*82+3)+"%";b.style.top=(Math.random()*72+4)+"%";
+ b.setAttribute("aria-label","Collect heart");
+ b.onclick=()=>{b.remove();score++;updateScore();confetti(4);if(score>=7){clearInterval(gameTimer);document.getElementById("score").textContent="Mission complete! Certified star behaviour. 🌟"}};
+ area.appendChild(b);setTimeout(()=>b.remove(),2400);
+}
+function updateScore(){
+ document.getElementById("score").textContent="Hearts collected: "+score+" / 7";
+ document.getElementById("bar").style.width=(score/7*100)+"%";
+}
+let giftsOpened=0;
+const giftText=[
+ "🍓 Official decree: you deserve your favourite snack. This is a royal order.",
+ "🧸 A tiny teddy has been hired to guard your peace. He is trying his absolute best.",
+ "🌈 Cloudy skies are still part of a colourful story. Take your time."
+];
+function openGift(btn,i){
+ if(btn.classList.contains("opened"))return;
+ btn.classList.add("opened");btn.textContent=giftText[i];giftsOpened++;
+ document.getElementById("giftScore").textContent="Gifts discovered: "+giftsOpened+" / 3";
+ confetti(10);
+}
+const reminders=[
+ "You don't need to have everything figured out today. One small breath at a time is enough.",
+ "Rest is not falling behind. Even the moon takes its time to shine. 🌙",
+ "You deserve the same gentleness you give to the people you care about. 💗",
+ "A cloudy day doesn't cancel the stars. They're still there, even when you can't see them. ✨",
+ "Your mission can simply be to take one breath, then the next. That's enough. 🌷"
+];
+let reminderIndex=0;
+function anotherReminder(){
+ reminderIndex=(reminderIndex+1)%reminders.length;
+ document.getElementById("reminder").textContent=reminders[reminderIndex];confetti(8);
+}
+function unlock(e){
+ e.preventDefault();
+ const input=document.getElementById("pass"),err=document.getElementById("error");
+ if(input.value===SECRET_PASSWORD){
+  err.textContent="Secret unlocked. Just for you. 💗";
+  setTimeout(()=>go(9),450);
+ }else{
+  err.textContent=["Hehe, not quite. Try again, detective. 👀","The lock says: absolutely not yet 😂","The password fairy says try again. ✨"][Math.floor(Math.random()*3)];
+  input.value="";
+ }
+}
+let typeTimer=null;
+function typeSecret(){
+ clearInterval(typeTimer);
+ const el=document.getElementById("secretText");el.textContent="";
+ let i=0;
+ typeTimer=setInterval(()=>{el.textContent=SECRET_MESSAGE.slice(0,i++);if(i>SECRET_MESSAGE.length)clearInterval(typeTimer)},24);
+}
+function readAgain(){typeSecret();confetti(20)}
+function confetti(count=28){
+ const icons=["💗","✨","⭐","🌸","💕","✦","🫧"];
+ for(let i=0;i<count;i++){
+  const c=document.createElement("span");c.className="fall";
+  c.textContent=icons[Math.floor(Math.random()*icons.length)];
+  c.style.left=Math.random()*100+"vw";c.style.fontSize=(12+Math.random()*19)+"px";
+  c.style.animationDuration=(2+Math.random()*2.5)+"s";
+  c.style.animationDelay=(Math.random()*.4)+"s";
+  document.body.appendChild(c);setTimeout(()=>c.remove(),5000);
+ }
+}
+</script>
+</body>
+</html>
